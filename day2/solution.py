@@ -1,5 +1,5 @@
 games = None
-with open('./testdata.txt', encoding="utf-8") as datafile:
+with open('./actualdata.txt', encoding="utf-8") as datafile:
   data = datafile.read()
   games = data.split('\n')
 
@@ -25,18 +25,44 @@ def result(myMove, opponentMove):
   else:
     return 6
 
+def whatMoveDoIMake(myInstruction, opponentMove):
+  opM = opponentMoves[opponentMove]
+  if myInstruction == 'lose':
+    if opM == 1:
+      return 3
+    elif opM == 2:
+      return 1
+    else:
+      return 2
+  elif myInstruction == 'draw':
+    return opM
+  else:
+    if opM == 1:
+      return 2
+    elif opM == 2:
+      return 3
+    else:
+      return 1
+
 totalscore = 0
 for game in games:
   moves = game.split(' ')
   myMove = moves.pop()
   opponentMove = moves.pop()
-  score = result(myMove, opponentMove);
+  score = 0
+  # I should loose
   if myMove == 'X':
-    score += 1
+    movePoint = whatMoveDoIMake('lose', opponentMove)
+    score += 0 + movePoint
+  # I should draw
   elif myMove == 'Y':
-    score += 2
+    movePoint = whatMoveDoIMake('draw', opponentMove)
+    score += 3 + movePoint
+
+  # I should win
   else:
-    score += 3
+    movePoint = whatMoveDoIMake('win', opponentMove)
+    score += 6 + movePoint
   totalscore += score
 
 print(f"total score of all rounds: {totalscore}")
