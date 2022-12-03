@@ -58,7 +58,6 @@ for game in games:
   elif myMove == 'Y':
     movePoint = whatMoveDoIMake('draw', opponentMove)
     score += 3 + movePoint
-
   # I should win
   else:
     movePoint = whatMoveDoIMake('win', opponentMove)
