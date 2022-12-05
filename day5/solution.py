@@ -29,9 +29,16 @@ for instruction in instructions.splitlines():
   iterations = int(splittedInstruction[1])
   fromColumn = splittedInstruction[3]
   toColumn = splittedInstruction[5]
+  boxesToMove = []
   for i in range(0, iterations):
-    stacks[toColumn].append(stacks[fromColumn].pop())
+    # Pt 1
+    # stacks[toColumn].append(stacks[fromColumn].pop())
+    # Pt 2
+    boxesToMove.append(stacks[fromColumn].pop())
+  boxesToMove.reverse()
+  stacks[toColumn].extend(boxesToMove)
 
+
+# Print final result
 for col in cols:
   print(stacks[col][-1])
-
