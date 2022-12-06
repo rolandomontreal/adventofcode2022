@@ -38,7 +38,6 @@ for instruction in instructions.splitlines():
   boxesToMove.reverse()
   stacks[toColumn].extend(boxesToMove)
 
-
 # Print final result
 for col in cols:
   print(stacks[col][-1])
